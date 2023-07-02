@@ -1,9 +1,9 @@
 // LoginForm.tsx
 
-import React, { useState } from 'react';
+import React, { useState } from 'react';;
 
 interface LoginFormProps {
-    onLogin: () => void; // Callback function to handle login
+    onLogin: (email: string, password: string) => Promise<void>; // Callback function to handle login
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
@@ -20,11 +20,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    // Perform login request or validation here
-    // Example code: You can replace this with your actual login logic
     if (email && password) {
-      // Call the onLogin callback provided by the parent component
-      onLogin();
+      onLogin(email, password);
     }
   };
 
