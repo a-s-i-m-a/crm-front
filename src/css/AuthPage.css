@@ -1,0 +1,65 @@
+/* AuthPage.css */
+
+.auth-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #232326;
+}
+
+.auth-container {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 30px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+.auth-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #008080; /* Teal color for title */
+}
+
+.toggle-button {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.toggle-button button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #008080; /* Teal color for toggle buttons */
+}
+
+.toggle-button button.active {
+    color: #fff;
+    background-color: #008080; /* Teal color for active toggle button */
+    border-radius: 5px;
+}
+.registration-form, .login-form {
+    text-align: center;
+}
+.form-group {
+    margin: 20px 0;
+}
+
+.submit {
+    padding: 10px 20px;
+    justify-content: center;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    background-color: #008080; /* Teal color for active toggle button */
+    border-radius: 5px;
+}
+
+
+

@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 10%;
+    background-color: teal;
+    color: white;
+    height: 100vh;
+}
+
+.tabs {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.tab {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.tab:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.content {
+    width: 75%;
+    /* Other content styles */
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding-bottom: 20px;
+    }
+
+    .tabs {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
