@@ -44,9 +44,10 @@
     background-color: #008080; /* Teal color for active toggle button */
     border-radius: 5px;
 }
-.registration-form, .login-form {
+.auth-form {
     text-align: center;
 }
+
 .form-group {
     margin: 20px 0;
 }

@@ -26,7 +26,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="auth-form" onSubmit={handleSubmit}>
       <div className="form-group">
         <label htmlFor="email">Email</label>
         <input
@@ -47,7 +47,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
           required
         />
       </div>
-      <button type="submit">Login</button>
+      <button className="submit" type="submit">Login</button>
     </form>
   );
 };

@@ -5,6 +5,7 @@ export class AuthStore {
     user = null;
     loading = false;
     error = null;
+    token: string | null = null;
 
     constructor() {
         makeAutoObservable(this);
@@ -18,14 +19,12 @@ export class AuthStore {
             });
 
             const response = await axios.post('http://localhost:3001/auth/login', credentials)
-            console.log('resp', response)
             runInAction(() => {
-                this.user = response.data;
+                this.token = response.data.token
                 this.loading = false;
             });
-        } catch (error) {
+        } catch (error: any) {
             runInAction(() => {
-                // @ts-ignore
                 this.error = error.message;
                 this.loading = false;
             });
