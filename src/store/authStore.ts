@@ -25,7 +25,7 @@ export class AuthStore {
             });
         } catch (error: any) {
             runInAction(() => {
-                this.error = error.message;
+                this.error = error.response.data.message;
                 this.loading = false;
             });
         }
