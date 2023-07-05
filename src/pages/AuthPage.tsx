@@ -1,65 +1,40 @@
-// AuthPage.tsx
 
-import React, { useState } from 'react';
+
+import React, {useContext} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import '../css/AuthPage.css';
-import RegistrationForm from '../components/RegisterForm';
 import LoginForm from '../components/LoginForm';
+import {AuthStore} from "../store/authStore";
+import { observer } from "mobx-react-lite"
+import {appStoreContext} from "../store/context.store";
 
-const AuthPage: React.FC = () => {
-  const [isRegistering, setIsRegistering] = useState(false);
+
+
+const AuthPage: React.FC <{ authStore?: AuthStore }>  = observer(( ) => {
   const navigate = useNavigate();
+  const {authStore} = useContext(appStoreContext);
 
-  const handleToggle = () => {
-    setIsRegistering(!isRegistering);
+  const handleLogin = async (email: string,password: string) => {
+    await authStore?.login({ email, password });
+    if (authStore.token) {
+      localStorage.setItem('token', authStore.token);
+      navigate('/main');
+    }
   };
 
-  const handleLogin = () => {
-    // Perform login logic here
-
-    // Redirect to the main page after login
-    navigate('/main');
-  };
-
-  const handleRegister = () => {
-    // Perform registration logic here
-
-    // Redirect to the main page after registration
-    navigate('/main');
-  };
 
   return (
     <div className="auth-page">
       <div className="auth-container">
-        <div className="toggle-button">
-          <button
-            className={!isRegistering ? 'active' : ''}
-            onClick={handleToggle}
-          >
-            Login
-          </button>
-          <button
-            className={isRegistering ? 'active' : ''}
-            onClick={handleToggle}
-          >
-            Register
-          </button>
-        </div>
-        {isRegistering ? (
-          <>
-            <h2 className="auth-title">Register</h2>
-            <RegistrationForm onRegister={handleRegister} />
-          </>
-        ) : (
-          <>
-            <h2 className="auth-title">Login</h2>
-            <LoginForm onLogin={handleLogin} />
-          </>
+        {authStore.error && (
+            <p style={{ color: 'red' }}>{authStore.error}</p>
         )}
+            <h2 className="auth-title">Login</h2>
+            <LoginForm onLogin={handleLogin}/>
       </div>
     </div>
   );
-};
+});
 
 export default AuthPage;
