@@ -5,6 +5,7 @@ import App from './App';
 import {Provider} from "mobx-react";
 import rootStore from "./store/rootStore";
 
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
