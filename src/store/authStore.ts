@@ -1,5 +1,6 @@
 import { makeAutoObservable, runInAction } from 'mobx';
 import axios from "axios";
+import {api} from "./api";
 
 export class AuthStore {
     user = null;
@@ -18,7 +19,7 @@ export class AuthStore {
                 this.error = null;
             });
 
-            const response = await axios.post('http://localhost:3001/auth/login', credentials)
+            const response = await api.post('/auth/login', credentials)
             runInAction(() => {
                 this.token = response.data.token
                 this.loading = false;
@@ -39,7 +40,7 @@ export class AuthStore {
                 this.error = null;
             });
 
-            const response = await axios.get('http://localhost:3001/auth/login')
+            const response = await api.get('/auth/login')
 
             runInAction(() => {
                 this.user = response.data;

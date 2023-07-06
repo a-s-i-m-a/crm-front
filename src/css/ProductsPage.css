@@ -1,0 +1,113 @@
+.list-container {
+    margin-left: 5rem;
+}
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.product-card {
+    background-color: #bfcece;
+    color: #070707;
+    padding: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.product-card:hover {
+    opacity: 0.8;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(16, 23, 23, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.modal-body p {
+    margin-bottom: 0.5rem;
+}
+
+.modal-body .edit-button,
+.modal-body .save-button,
+.modal-body .delete-button,
+.modal-body .sell-button {
+    background-color: #008080FF;
+    margin-top: 1rem;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal-body .edit-button {
+    margin-right: 0.5rem;
+}
+
+.modal-body .delete-button {
+    margin-right: 0.5rem;
+    background-color: #c41818;
+}
+.modal-body .sell-button  {
+    margin-right: 0.5rem;
+    background-color: #2fc418;
+}
+
+.modal-body button:hover {
+    opacity: 0.8;
+}
+
+
+.close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    background-color: #008080;
+    color: #ffffff;
+    border: none;
+    padding: 8px 12px;
+    margin: 0 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.pagination button.active {
+    background-color: #00a0a0;
+}
+
+.pagination button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
