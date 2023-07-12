@@ -1,6 +1,5 @@
 import { makeAutoObservable, runInAction } from 'mobx';
-import axios from "axios";
-import {api} from "./api";
+import { api } from "./api";
 
 export class AuthStore {
     user = null;
