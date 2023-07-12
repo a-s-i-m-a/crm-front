@@ -10,6 +10,7 @@ export interface Product {
     soldPrice: number;
     boughtPrice: number;
     title: string;
+    barcode: string;
 }
 
 export class ProductStore {

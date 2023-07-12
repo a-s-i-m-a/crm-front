@@ -1,5 +1,6 @@
 import {Product} from "../store/productsStore";
 import "../css/Modal.css"
+import Barcode from "react-barcode";
 
 interface ProductModalProps {
     product: Product;
@@ -22,6 +23,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
                                                        onDelete,
                                                        onInputChange,
                                                    }) => {
+    console.log(product.id)
     return (
         <div className="modal-overlay">
             <div className="modal-content">
@@ -122,6 +124,7 @@ const ProductModal: React.FC<ProductModalProps> = ({
                             product.title
                         )}
                     </p>
+                   <Barcode value={`${product.barcode}`} />
                     {isEditing ? (
                         <button className="save-button" onClick={onSave}>
                             Save
