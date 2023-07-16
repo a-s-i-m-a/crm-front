@@ -11,10 +11,22 @@ const ProductList: React.FC = observer(() => {
     const [isEditing, setIsEditing] = useState<boolean>(false);
     const [updatedProduct, setUpdatedProduct] = useState<any | null>(null);
     const { productStore } = useContext(appStoreContext);
+    const [searchQuery, setSearchQuery] = useState('');
 
 
     useEffect(() => {
-        productStore.fetchProducts();
+        const delaySearch = setTimeout(() => {
+            productStore.fetchProducts(searchQuery);
+        }, 300);
+
+        return () => {
+            clearTimeout(delaySearch);
+        };
+    }, [searchQuery]);
+
+
+    useEffect(() => {
+        productStore.fetchProducts(searchQuery);
     }, [productStore, productStore.currentPage]);
 
     const handleProductClick = (product: Product) => {
@@ -35,11 +47,13 @@ const ProductList: React.FC = observer(() => {
 
     const handleDeleteProduct = () => {
         productStore.deleteProduct(selectedProduct?.id)
+        handleCloseModal()
     };
 
     const handleSaveProduct = () => {
         productStore.editProduct( updatedProduct)
         setIsEditing(false);
+        handleCloseModal()
     };
 
     const handleInputChange = (event:any) => {
@@ -64,6 +78,12 @@ const ProductList: React.FC = observer(() => {
     return (
         <div className="list-container">
             <h1>Products List</h1>
+            <input
+                type="text"
+                placeholder="Search by title or barcode..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+            />
             <div className="product-list">
                 {productStore.products.map((product) => (
                     <ProductCard

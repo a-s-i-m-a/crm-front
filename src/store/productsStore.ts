@@ -22,9 +22,9 @@ export class ProductStore {
         makeAutoObservable(this);
     }
 
-    async fetchProducts() {
+    async fetchProducts(query:string) {
         try {
-            const response = await api.get('/products', {
+            const response = await api.get(`/products?query=${query}`, {
                 params: { page: this.currentPage },
             });
             const { totalPages } = response.data;
@@ -59,7 +59,7 @@ export class ProductStore {
 
     setCurrentPage(page: number) {
         this.currentPage = page;
-        this.fetchProducts();
+        this.fetchProducts('');
     }
 }
 
