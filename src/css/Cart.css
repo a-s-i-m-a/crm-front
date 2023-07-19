@@ -1,0 +1,55 @@
+.cart-container {
+    width: 25rem;
+    background: #bfcece;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 10px;
+    border: 2px solid #00a0a0;
+    margin-right: 20px;
+    position: relative;
+    height: 70vh;
+}
+
+.cart-title {
+    text-align: center;
+}
+.cart-list li {
+    list-style-type: none;
+   display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.select-size {
+    height: 20px;
+    border-radius: 4px;
+    border-color: #00a0a0;
+}
+.remove {
+    color: #c41818;
+}
+
+.sell {
+    padding: 6px;
+    border-color: #00a0a0;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    background: #7db275;
+    width: 30%;
+}
+
+
+.client-container {
+    width: 100%;
+    position: absolute;
+    bottom: 2px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.total-sum {
+    margin: 10px;
+    font-weight: bold;
+}

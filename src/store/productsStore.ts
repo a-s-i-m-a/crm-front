@@ -1,11 +1,12 @@
 import { makeAutoObservable } from 'mobx';
 import {api} from "./api";
 
+
 export interface Product {
     id: number;
     isInStock: boolean;
     count: number;
-    sizes: string;
+    sizes: string[];
     color: string;
     soldPrice: number;
     boughtPrice: number;
@@ -22,7 +23,7 @@ export class ProductStore {
         makeAutoObservable(this);
     }
 
-    async fetchProducts(query:string) {
+    async fetchProducts(query:string = '') {
         try {
             const response = await api.get(`/products?query=${query}`, {
                 params: { page: this.currentPage },
