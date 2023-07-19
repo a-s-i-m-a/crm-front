@@ -5,6 +5,8 @@ import ProductCard from "../components/ProductCard";
 import {appStoreContext} from "../store/context.store";
 import {observer} from "mobx-react-lite";
 import "../css/ProductsPage.css"
+import Pagination from "../components/Pagination";
+import Cart from "../components/Cart";
 
 const ProductList: React.FC = observer(() => {
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -12,6 +14,7 @@ const ProductList: React.FC = observer(() => {
     const [updatedProduct, setUpdatedProduct] = useState<any | null>(null);
     const { productStore } = useContext(appStoreContext);
     const [searchQuery, setSearchQuery] = useState('');
+    const [isUpdatedList, setIsUpdatedList] = useState(false)
 
 
     useEffect(() => {
@@ -27,7 +30,7 @@ const ProductList: React.FC = observer(() => {
 
     useEffect(() => {
         productStore.fetchProducts(searchQuery);
-    }, [productStore, productStore.currentPage]);
+    }, [isUpdatedList,productStore, productStore.currentPage]);
 
     const handleProductClick = (product: Product) => {
         setSelectedProduct(product);
@@ -76,54 +79,46 @@ const ProductList: React.FC = observer(() => {
 
 
     return (
-        <div className="list-container">
-            <h1>Products List</h1>
-            <input
-                type="text"
-                placeholder="Search by title or barcode..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <div className="product-list">
-                {productStore.products.map((product) => (
-                    <ProductCard
-                        key={product.id}
-                        product={product}
-                        onClick={handleProductClick}/>
-                ))}
-            </div>
-            {selectedProduct && (
-                <ProductModal
-                    product={selectedProduct}
-                    isEditing={isEditing}
-                    updatedProduct={updatedProduct}
-                    onClose={handleCloseModal}
-                    onEdit={handleEditProduct}
-                    onSave={handleSaveProduct}
-                    onInputChange={handleInputChange}
-                    onDelete={handleDeleteProduct}
-                />
-            )}
-            <div className="pagination">
-                <button
-                    disabled={productStore.currentPage < 2}
-                    onClick={handlePrevPage}
-                >
-                    Prev
-                </button>
-                <button
+        <div className="products-container">
+            <Cart setIsUpdatedList={setIsUpdatedList}/>
+            <div className="list-container">
 
-                >
-                    {productStore.currentPage}
-                </button>
-                <button
-                    disabled={productStore.products.length < 10}
-                    onClick={handleNextPage}
-                >
-                    Next
-                </button>
+                <h1>Products List</h1>
+                <input
+                    type="text"
+                    placeholder="Search by title or barcode..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                <div className="product-list">
+                    {productStore.products.map((product) => (
+                        <ProductCard
+                            key={product.id}
+                            product={product}
+                            onClick={handleProductClick}/>
+                    ))}
+                </div>
+                {selectedProduct && (
+                    <ProductModal
+                        product={selectedProduct}
+                        isEditing={isEditing}
+                        updatedProduct={updatedProduct}
+                        onClose={handleCloseModal}
+                        onEdit={handleEditProduct}
+                        onSave={handleSaveProduct}
+                        onInputChange={handleInputChange}
+                        onDelete={handleDeleteProduct}
+                    />
+                )}
+                <Pagination
+                    currentPage={productStore.currentPage}
+                    isNextDisabled={productStore.products.length < 10}
+                    onPrevPage={handlePrevPage}
+                    onNextPage={handleNextPage}
+                />
             </div>
-        </div>
+    </div>
+
     );
 });
 

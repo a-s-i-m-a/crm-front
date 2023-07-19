@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import '../css/MainPage.css';
 import ProductsListPage from "./ProductsPage";
 import StatisticPage from "./StatisticPage";
+import HistoryPage from "./HistoryPage";
 
 const MainPage: React.FC = () => {
     const [activeTab, setActiveTab] = useState('Home');
@@ -32,13 +33,19 @@ const MainPage: React.FC = () => {
                     >
                         History
                     </div>
+                    <div
+                        className={`tab ${activeTab === 'Clients' ? 'active' : ''}`}
+                        onClick={() => handleTabClick('Clients')}
+                    >
+                        Clients
+                    </div>
                 </div>
             </div>
             <div className="content">
                 {/* Render content based on the active tab */}
                 {activeTab === 'Home' && <StatisticPage />}
                 {activeTab === 'Products' && <ProductsListPage/>}
-                {activeTab === 'History' && <h1>History Content</h1>}
+                {activeTab === 'History' && <HistoryPage />}
             </div>
         </div>
     );

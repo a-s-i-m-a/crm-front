@@ -1,21 +1,25 @@
 .container {
     display: flex;
+    flex-direction: column;
 }
 
 .sidebar {
-    width: 10%;
+    width: 100%;
     background-color: teal;
     color: white;
-    height: 100vh;
+    padding-bottom: 20px;
+    height: 8vh;
 }
 
 .tabs {
     display: flex;
-    flex-direction: column;
     padding: 20px;
+    justify-content: center;
 }
 
 .tab {
+    flex-direction: row;
+    justify-content: space-around;
     padding: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -23,26 +27,4 @@
 
 .tab:hover {
     background-color: rgba(255, 255, 255, 0.2);
-}
-
-.content {
-    width: 75%;
-    /* Other content styles */
-}
-
-@media screen and (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-
-    .sidebar {
-        width: 100%;
-        padding-bottom: 20px;
-        height: 10vh;
-    }
-
-    .tabs {
-        flex-direction: row;
-        justify-content: space-around;
-    }
 }
