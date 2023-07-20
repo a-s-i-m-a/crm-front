@@ -3,7 +3,7 @@ import {api} from "./api";
 import {Product} from "./productsStore";
 
 
-interface SellProduct extends Product{
+export interface SellProduct extends Product{
     selectedSize?: string;
 }
 

@@ -36,6 +36,19 @@ export class ProductStore {
         }
     }
 
+    async addProduct(newProduct: Partial<Product>) {
+        try {
+            const response = await api.post('/products', newProduct);
+
+
+            const addedProduct= response.data
+            this.products.push(addedProduct);
+        } catch (error) {
+            console.error('Error adding product:', error);
+            // Handle error here, e.g., show an error message to the user
+        }
+    }
+
     async editProduct( updatedProduct:Product) {
         try {
             const response = await api.put(`/products/${updatedProduct.id}`, updatedProduct);

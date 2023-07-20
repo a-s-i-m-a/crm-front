@@ -1,11 +1,8 @@
-/* AuthPage.css */
-
 .auth-page {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #232326;
 }
 
 .auth-container {
@@ -19,7 +16,7 @@
 .auth-title {
     text-align: center;
     margin-bottom: 20px;
-    color: #008080; /* Teal color for title */
+    color: #388087;
 }
 
 .toggle-button {
@@ -36,12 +33,12 @@
     padding: 10px 20px;
     cursor: pointer;
     transition: all 0.3s ease;
-    color: #008080; /* Teal color for toggle buttons */
+    color: #388087;
 }
 
 .toggle-button button.active {
     color: #fff;
-    background-color: #008080; /* Teal color for active toggle button */
+    background-color: #388087;
     border-radius: 5px;
 }
 .auth-form {
@@ -58,7 +55,7 @@
     font-size: 16px;
     color: #fff;
     border: none;
-    background-color: #008080; /* Teal color for active toggle button */
+    background-color: #388087;
     border-radius: 5px;
 }
 

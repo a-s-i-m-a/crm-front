@@ -1,10 +1,9 @@
 .cart-container {
     width: 25rem;
-    background: #bfcece;
+    background: #d8e4e7;
     border-radius: 10px;
     margin-top: 20px;
     padding: 10px;
-    border: 2px solid #00a0a0;
     margin-right: 20px;
     position: relative;
     height: 70vh;
@@ -23,7 +22,7 @@
 .select-size {
     height: 20px;
     border-radius: 4px;
-    border-color: #00a0a0;
+    border-color: #388087;
 }
 .remove {
     color: #c41818;
@@ -31,7 +30,7 @@
 
 .sell {
     padding: 6px;
-    border-color: #00a0a0;
+    border-color: #388087;
     border-radius: 4px;
     color: white;
     font-weight: bold;
@@ -52,4 +51,12 @@
 .total-sum {
     margin: 10px;
     font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .cart-container {
+       width: 90%;
+        height: 50vh;
+    }
+
 }

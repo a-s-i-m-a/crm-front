@@ -11,7 +11,7 @@
 }
 
 .modal-content {
-    background-color: white;
+    background-color: #fefff8;
     padding: 2rem;
     border-radius: 4px;
     width: 90%;
@@ -43,7 +43,7 @@ input {
     margin-bottom: 8px;
 }
 .title {
-    color: teal;
+    color: #388087;
 }
 
 .buttons {

@@ -7,14 +7,17 @@ import {observer} from "mobx-react-lite";
 import "../css/ProductsPage.css"
 import Pagination from "../components/Pagination";
 import Cart from "../components/Cart";
+import AddProductModal from "../components/AddProductModal";
+import {SellProduct} from "../store/cartSore";
 
 const ProductList: React.FC = observer(() => {
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [isEditing, setIsEditing] = useState<boolean>(false);
     const [updatedProduct, setUpdatedProduct] = useState<any | null>(null);
-    const { productStore } = useContext(appStoreContext);
+    const { productStore, cartStore } = useContext(appStoreContext);
     const [searchQuery, setSearchQuery] = useState('');
     const [isUpdatedList, setIsUpdatedList] = useState(false)
+    const [isAddProductModalOpen, setIsAddProductModalOpen] = useState(false)
 
 
     useEffect(() => {
@@ -31,6 +34,10 @@ const ProductList: React.FC = observer(() => {
     useEffect(() => {
         productStore.fetchProducts(searchQuery);
     }, [isUpdatedList,productStore, productStore.currentPage]);
+
+    const handleAddProduct = (newProduct: Partial<Product>) => {
+        productStore.addProduct(newProduct);
+    };
 
     const handleProductClick = (product: Product) => {
         setSelectedProduct(product);
@@ -76,13 +83,16 @@ const ProductList: React.FC = observer(() => {
         productStore.setCurrentPage(productStore.currentPage+1)
     };
 
+    const handleSellProduct = (product: SellProduct) => {
+        cartStore.addToCart(product);
+    }
+
 
 
     return (
         <div className="products-container">
             <Cart setIsUpdatedList={setIsUpdatedList}/>
             <div className="list-container">
-
                 <h1>Products List</h1>
                 <input
                     type="text"
@@ -90,6 +100,12 @@ const ProductList: React.FC = observer(() => {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                 />
+                <button
+                    className="add-product-button"
+                    onClick={()=>setIsAddProductModalOpen(true)}
+                >
+                    Add New Product
+                </button>
                 <div className="product-list">
                     {productStore.products.map((product) => (
                         <ProductCard
@@ -104,11 +120,15 @@ const ProductList: React.FC = observer(() => {
                         isEditing={isEditing}
                         updatedProduct={updatedProduct}
                         onClose={handleCloseModal}
+                        onSell={handleSellProduct}
                         onEdit={handleEditProduct}
                         onSave={handleSaveProduct}
                         onInputChange={handleInputChange}
                         onDelete={handleDeleteProduct}
                     />
+                )}
+                {isAddProductModalOpen && (
+                    <AddProductModal onClose={() => setIsAddProductModalOpen(false)} onAddProduct={handleAddProduct} />
                 )}
                 <Pagination
                     currentPage={productStore.currentPage}

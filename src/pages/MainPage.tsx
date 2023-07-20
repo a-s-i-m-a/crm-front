@@ -5,7 +5,7 @@ import StatisticPage from "./StatisticPage";
 import HistoryPage from "./HistoryPage";
 
 const MainPage: React.FC = () => {
-    const [activeTab, setActiveTab] = useState('Home');
+    const [activeTab, setActiveTab] = useState('Products');
 
     const handleTabClick = (tabName: string) => {
         setActiveTab(tabName);
@@ -16,10 +16,10 @@ const MainPage: React.FC = () => {
             <div className="sidebar">
                 <div className="tabs">
                     <div
-                        className={`tab ${activeTab === 'Home' ? 'active' : ''}`}
-                        onClick={() => handleTabClick('Home')}
+                        className={`tab ${activeTab === 'Statistics' ? 'active' : ''}`}
+                        onClick={() => handleTabClick('Statistics')}
                     >
-                        Home
+                        Statistics
                     </div>
                     <div
                         className={`tab ${activeTab === 'Products' ? 'active' : ''}`}
@@ -42,8 +42,7 @@ const MainPage: React.FC = () => {
                 </div>
             </div>
             <div className="content">
-                {/* Render content based on the active tab */}
-                {activeTab === 'Home' && <StatisticPage />}
+                {activeTab === 'Statistics' && <StatisticPage />}
                 {activeTab === 'Products' && <ProductsListPage/>}
                 {activeTab === 'History' && <HistoryPage />}
             </div>

@@ -7,10 +7,19 @@
 }
 
 .statistics-container {
-    width: 80%;
+    width: 60%;
     margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5rem;
 }
 
 .chart-container {
     width: 15rem;
+}
+
+@media (max-width: 768px) {
+    .statistics-container {
+        flex-direction: column;
+    }
 }

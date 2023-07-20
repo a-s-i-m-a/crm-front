@@ -9,6 +9,13 @@ export class StatisticStore {
         profit: 0,
     };
 
+    history = {
+        totalCount: 0,
+        totalSoldPrice: 0,
+        totalBoughtPrice: 0,
+        income: 0,
+    };
+
     products = [];
 
     constructor() {
@@ -19,6 +26,15 @@ export class StatisticStore {
         try {
             const response = await api.get('/statistics/products');
             this.statistics = response.data;
+        } catch (error) {
+            console.error('Error fetching statistics:', error);
+        }
+    }
+
+    async fetchHistoryStatistics(timePeriod: string) {
+        try {
+            const response = await api.get(`/statistics/sell-history?query=${timePeriod}`);
+            this.history = response.data;
         } catch (error) {
             console.error('Error fetching statistics:', error);
         }

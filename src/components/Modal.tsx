@@ -1,12 +1,14 @@
 import {Product} from "../store/productsStore";
 import "../css/Modal.css"
 import Barcode from "react-barcode";
+import { SellProduct } from '../store/cartSore'
 
 interface ProductModalProps {
     product: Product;
     isEditing: boolean;
     updatedProduct: Product;
     onClose: () => void;
+    onSell: (product: SellProduct) => void;
     onEdit: () => void;
     onSave: () => void;
     onDelete: () => void;
@@ -22,8 +24,8 @@ const ProductModal: React.FC<ProductModalProps> = ({
                                                        onSave,
                                                        onDelete,
                                                        onInputChange,
+                                                       onSell
                                                    }) => {
-    console.log(product.id)
     return (
         <div className="modal-overlay">
             <div className="modal-content">
@@ -137,7 +139,9 @@ const ProductModal: React.FC<ProductModalProps> = ({
                             <button className="delete-button" onClick={onDelete}>
                                 Delete
                             </button>
-                            <button className="sell-button">Sell</button>
+                            <button className="sell-button" onClick={()=>onSell(product)}>
+                                Sell
+                            </button>
                         </div>
                     )}
                 </div>
