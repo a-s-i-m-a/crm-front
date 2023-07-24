@@ -64,7 +64,7 @@ export class ProductStore {
 
     async deleteProduct(id:number|undefined) {
         try {
-            await api.delete(`/products/${id}`);
+            await api.put(`/products/remove/${id}`);
             this.products = this.products.filter((product) => product.id !== id);
         } catch (error) {
             console.error('Error deleting product:', error);

@@ -33,12 +33,6 @@ const MainPage: React.FC = () => {
                     >
                         History
                     </div>
-                    <div
-                        className={`tab ${activeTab === 'Clients' ? 'active' : ''}`}
-                        onClick={() => handleTabClick('Clients')}
-                    >
-                        Clients
-                    </div>
                 </div>
             </div>
             <div className="content">

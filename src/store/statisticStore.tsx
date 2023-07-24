@@ -33,7 +33,7 @@ export class StatisticStore {
 
     async fetchHistoryStatistics(timePeriod: string) {
         try {
-            const response = await api.get(`/statistics/sell-history?query=${timePeriod}`);
+            const response = await api.get(`/statistics/sell-history?timePeriod=${timePeriod}`);
             this.history = response.data;
         } catch (error) {
             console.error('Error fetching statistics:', error);

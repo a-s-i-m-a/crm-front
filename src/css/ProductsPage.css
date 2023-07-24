@@ -53,7 +53,8 @@
 .modal-body .edit-button,
 .modal-body .save-button,
 .modal-body .delete-button,
-.modal-body .sell-button {
+.modal-body .sell-button ,
+.modal-body .print-button{
     background-color: #388087;
     margin-top: 1rem;
     color: white;
@@ -74,6 +75,11 @@
 .modal-body .sell-button  {
     margin-right: 0.5rem;
     background-color: #c2edce;
+}
+
+.modal-body .print-button {
+    margin-right: 0.5rem;
+    background-color: #cae1e7;
 }
 
 .modal-body button:hover {

@@ -38,7 +38,7 @@ const StatisticPage: React.FC = () => {
                     <h2>In stock</h2>
                     <div>
                         <div className="color-square" style={{ backgroundColor: chartData.datasets[0].backgroundColor[0] }}></div>
-                        <h3>Total Sold Price</h3>
+                        <h3>Total Count</h3>
                         <p>{totalCount}</p>
                     </div>
                     <div>
@@ -71,7 +71,7 @@ const StatisticPage: React.FC = () => {
                     </select>
                     <div>
                         <div className="color-square" style={{ backgroundColor: chartData.datasets[0].backgroundColor[0] }}></div>
-                        <h3>Total Sold Price</h3>
+                        <h3>Total Count</h3>
                         <p>{statisticStore.history.totalCount}</p>
                     </div>
                     <div>

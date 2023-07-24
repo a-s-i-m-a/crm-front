@@ -2,6 +2,8 @@ import {Product} from "../store/productsStore";
 import "../css/Modal.css"
 import Barcode from "react-barcode";
 import { SellProduct } from '../store/cartSore'
+import {useRef} from "react";
+import html2canvas from "html2canvas";
 
 interface ProductModalProps {
     product: Product;
@@ -26,6 +28,28 @@ const ProductModal: React.FC<ProductModalProps> = ({
                                                        onInputChange,
                                                        onSell
                                                    }) => {
+    const barcodeRef = useRef<HTMLDivElement>(null);
+
+    const handlePrint = async () => {
+        if (barcodeRef.current) {
+            try {
+                const canvas = await html2canvas(barcodeRef.current);
+                const imageData = canvas.toDataURL();
+
+                const printWindow = window.open("", "_blank");
+                if (printWindow) {
+                    printWindow.document.write(`<img src="${imageData}" />`);
+                    printWindow.document.close();
+                    printWindow.print();
+                } else {
+                    alert("The print window was blocked. Please allow pop-ups for this site.");
+                }
+            } catch (error) {
+                console.error("Error printing the barcode:", error);
+            }
+        }
+    };
+
     return (
         <div className="modal-overlay">
             <div className="modal-content">
@@ -35,19 +59,6 @@ const ProductModal: React.FC<ProductModalProps> = ({
                 <div className="modal-body">
                     <h2 className="title">{product.title}</h2>
                     <p>Price: ${product.soldPrice}</p>
-                    <p>
-                        In Stock:
-                        {isEditing ? (
-                            <input
-                                type="checkbox"
-                                name="isInStock"
-                                checked={updatedProduct.isInStock}
-                                onChange={onInputChange}
-                            />
-                        ) : (
-                            product.isInStock ? 'Yes' : 'No'
-                        )}
-                    </p>
                     <p>
                         Count:
                         {isEditing ? (
@@ -126,7 +137,9 @@ const ProductModal: React.FC<ProductModalProps> = ({
                             product.title
                         )}
                     </p>
-                   <Barcode value={`${product.barcode}`} />
+                    <div ref={barcodeRef}>
+                        <Barcode value={`${product.barcode}`} />
+                    </div>
                     {isEditing ? (
                         <button className="save-button" onClick={onSave}>
                             Save
@@ -141,6 +154,9 @@ const ProductModal: React.FC<ProductModalProps> = ({
                             </button>
                             <button className="sell-button" onClick={()=>onSell(product)}>
                                 Sell
+                            </button>
+                            <button className="print-button" onClick={handlePrint}>
+                                Print
                             </button>
                         </div>
                     )}

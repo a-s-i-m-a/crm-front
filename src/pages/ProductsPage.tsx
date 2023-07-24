@@ -28,7 +28,7 @@ const ProductList: React.FC = observer(() => {
         return () => {
             clearTimeout(delaySearch);
         };
-    }, [searchQuery]);
+    }, [searchQuery, selectedProduct]);
 
 
     useEffect(() => {
