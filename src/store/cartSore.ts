@@ -14,7 +14,7 @@ export class CartStore {
         try {
             for (const product of this.cartItems) {
                 const sellData = {
-                    soldSize: product.selectedSize ? product.selectedSize : product.sizes[0],
+                    soldSize: product.selectedSize ? product.selectedSize : product.sizes[0] || ['all'],
                     barcode: product.barcode,
                 };
 

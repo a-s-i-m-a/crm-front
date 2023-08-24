@@ -62,7 +62,7 @@ const Cart = observer(({ setIsUpdatedList }: Props) => {
                                 className="select-size"
                                 onChange={(event) => handleSizeChange(event, index)}
                             >
-                                {item.sizes.map((size: string) => (
+                                {item.sizes?.map((size: string) => (
                                     <option key={size} value={size}>
                                         {size}
                                     </option>

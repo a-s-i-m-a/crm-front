@@ -1,6 +1,4 @@
-// LoginForm.tsx
-
-import React, { useState } from 'react';;
+import React, { useState } from 'react';
 
 interface LoginFormProps {
     onLogin: (email: string, password: string) => Promise<void>; // Callback function to handle login
